@@ -34,6 +34,7 @@ unsigned char MENSAJE_C[] = {
         0x00,0x7E,0x7E,0x66,0x66,0x66,0x66,0x00, // C
         0x00,0x7E,0x7E,0x12,0x12,0x7E,0x7E,0x00, // A
         0xC3,0xE7,0x7E,0x3C,0x18,0x18,0x18,0x18, // SUDAFRICA
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, // ESPACIO
     };
 
 //Mensaje en desplazamiento por filas
@@ -73,7 +74,7 @@ void derecha_izquierda(){
                         PORTB = 0xFF;            // Apaga las filas para evitar el efecto fantasma
                         PORTD = PORT[j];         // Selecciona la nueva columna
                         PORTB = ~MENSAJE_C[i + j]; // Muestra el patrón negado
-                        _delay_ms(0.08);            // Retraso para mantener la persistencia de la visión
+                        _delay_ms(0.2);            // Retraso para mantener la persistencia de la visión
                     }
                 }
                 if (!(PINC & boton0)) return; // Si el botón está presionado, salir de la función para detener el desplazamiento
@@ -86,7 +87,7 @@ void abajo_arriba() {
       for (int j = 0; j < 8; j++) {
         PORTB = PORT[j]; // Selecciona la columna
         PORTD = MENSAJE_F[i + j]; // Envía el byte correspondiente a la fila
-        _delay_ms(0.10); // Retardo para controlar la velocidad de desplazamiento
+        _delay_ms(0.2); // Retardo para controlar la velocidad de desplazamiento
       }
       if (!(PINC & boton1)) return;
     }
@@ -102,7 +103,7 @@ void izquierda_derecha(){
                         PORTB = 0xFF;            // Apaga las filas para evitar el efecto fantasma
                         PORTD = PORT[j];         // Selecciona la nueva columna
                         PORTB = ~MENSAJE_C[i + j]; // Muestra el patrón negado
-                        _delay_ms(0.08);            // Retraso para mantener la persistencia de la visión
+                        _delay_ms(0.2);            // Retraso para mantener la persistencia de la visión
                     }
                 }
                 if (!(PINC & boton2)) return; // Si el botón está presionado, salir de la función para detener el desplazamiento
@@ -118,7 +119,7 @@ void arriba_abajo() {
       for (int j = 0; j < 8; j++) {
         PORTB = PORT[j]; // Selecciona la columna / fila
         PORTD = MENSAJE_F[i + j]; // Envía el byte correspondiente
-        _delay_ms(0.10); // Retardo de multiplexación
+        _delay_ms(0.2); // Retardo de multiplexación
       }
       
       // Condición de salida si se presiona el botón
